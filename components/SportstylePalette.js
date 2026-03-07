@@ -171,13 +171,13 @@ export default function SportstylePalette() {
     try {
       // Step 1: Web search aesthetic
       const d1 = await apiFetch({
-        model: "claude-sonnet-4-20250514", max_tokens: 800,
+        model: "claude-sonnet-4-20250514", max_tokens: 1500,
         tools: [{ type: "web_search_20250305", name: "web_search" }],
-        system: "You are a fashion trend researcher. You MUST call web_search before responding.",
-        messages: [{ role: "user", content: `Use web_search to research the fashion aesthetic of "${h}". Search "${h} fashion aesthetic style" and "${h} outfit colors". Describe their style in 2-3 sentences — name specific colors (warm caramel, dusty sage, cream, olive, terracotta, beige, etc.).` }],
+        system: "You are a fun, enthusiastic fashion editor writing style profiles. You MUST call web_search before responding.",
+        messages: [{ role: "user", content: `Use web_search to research the fashion aesthetic and personal style of "${h}". Search for "${h} fashion style" and "${h} outfits". Write a punchy, fun style profile of 4-6 sentences covering: (1) their signature color palette with specific color names, (2) their go-to outfit formulas, (3) the occasions or settings they dress for, (4) any patterns, textures or silhouettes they gravitate toward, and (5) a closing sentence capturing their overall vibe. Be specific, enthusiastic and a little playful — like a fashion editor writing about a friend.` }],
       });
       const aText = d1.content.filter(b => b.type === "text").map(b => b.text).join("\n");
-      setAestheticDesc(aText.slice(0, 320));
+      setAestheticDesc(aText);
       setStatusMsg("Generating palette…");
 
       // Step 2: Palette
@@ -266,7 +266,7 @@ export default function SportstylePalette() {
             <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: B.midGrey, marginBottom: 8 }}>
               Aesthetic Profile — @{handle.replace(/^@/, "")}
             </div>
-            <div style={{ fontSize: 14, lineHeight: 1.7, color: B.black }}>{aestheticDesc}{aestheticDesc.length >= 320 ? "…" : ""}</div>
+            <div style={{ fontSize: 14, lineHeight: 1.7, color: B.black }}>{aestheticDesc}</div>
           </div>
         )}
 

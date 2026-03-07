@@ -156,7 +156,7 @@ export default function SportstylePalette() {
     const h = handle.trim().replace(/^@/, "");
     if (!h || loading) return;
     setLoading(true); setError(""); setPalette([]); setAestheticDesc(""); setDone(false); setExpandAll(false);
-    setStatusMsg("Searching aesthetic");
+    setStatusMsg("Searching style...");
 
     try {
       // Step 1: Web search aesthetic
@@ -164,7 +164,7 @@ export default function SportstylePalette() {
         model: "claude-sonnet-4-20250514", max_tokens: 1500,
         tools: [{ type: "web_search_20250305", name: "web_search" }],
         system: "You are a fun, enthusiastic fashion editor writing style profiles. You MUST call web_search before responding.",
-        messages: [{ role: "user", content: `Use web_search to research the fashion aesthetic and personal style of ${searchName} (Instagram: @${h}). Search for "${searchName} instagram outfits" and "${searchName} fashion style". Write a punchy, fun style profile of 4-6 sentences covering: (1) their signature color palette with specific color names, (2) their go-to outfit formulas, (3) the occasions or settings they dress for, (4) any patterns, textures or silhouettes they gravitate toward, and (5) a closing sentence capturing their overall vibe. Be specific, enthusiastic and a little playful  like a fashion editor writing about a friend.` }],
+        messages: [{ role: "user", content: `Use web_search to research the fashion aesthetic and personal style of ${h} (Instagram: @${h}). Search for "${h} instagram outfits" and "${h} fashion style". Write a punchy, fun style profile of 4-6 sentences covering: (1) their signature color palette with specific color names, (2) their go-to outfit formulas, (3) the occasions or settings they dress for, (4) any patterns, textures or silhouettes they gravitate toward, and (5) a closing sentence capturing their overall vibe. Be specific, enthusiastic and a little playful  like a fashion editor writing about a friend.` }],
       });
       const aText = d1.content.filter(b => b.type === "text").map(b => b.text).join("\n");
       setAestheticDesc(aText);

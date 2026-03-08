@@ -199,6 +199,11 @@ Four elements only. No caveats, no hedging, no extra sentences.`
 
       <div style={{ maxWidth: 1000, margin: "0 auto", padding: "48px 48px 80px" }}>
 
+        {/* INTRO BLURB */}
+        <div style={{ fontSize: 18, color: B.black, lineHeight: 1.75, marginBottom: 36, maxWidth: 660, fontWeight: 400 }}>
+          Discover your signature sneaker match. Enter any Instagram handle below and we&apos;ll analyze their style, extract a personal color palette, and find the perfect ASICS GEL-Cumulus 16 colorway for them.
+        </div>
+
         {/* INPUT */}
         <div style={{ marginBottom: 8 }}>
           <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: B.midGrey, marginBottom: 10 }}>Instagram Handle</div>
@@ -216,9 +221,7 @@ Four elements only. No caveats, no hedging, no extra sentences.`
             </button>
           </div>
         </div>
-        <div style={{ fontSize: 11, color: B.midGrey, letterSpacing: "0.04em", marginBottom: 44 }}>
-          Discover your signature sneaker match. Enter any Instagram handle below and we'll analyze their style, extract a personal color palette, and find the perfect ASICS GEL-Cumulus 16 colorway for them.
-        </div>
+
 
         {/* ERROR */}
         {error && (

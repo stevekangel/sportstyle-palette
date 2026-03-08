@@ -130,7 +130,7 @@ export default function SportstylePalette() {
         model: "claude-sonnet-4-20250514",
         max_tokens: 1500,
         tools: [{ type: "web_search_20250305", name: "web_search" }],
-        system: "You are a fashion editor specializing in retro sports aesthetic and sportstyle culture. You MUST call web_search before responding. Write confidently based on your best read of their style - no caveats or hedging. Output ONLY the profile, no preamble.",
+        system: "You are a fashion editor specializing in retro sports aesthetic and sportstyle culture. You MUST call web_search before responding. Write confidently based on your best read of their style. NEVER explain what you found or did not find in your search. NEVER mention follower counts, bios, or search results. Output ONLY the four profile elements with zero preamble or meta-commentary.",
         messages: [{
           role: "user",
           content: `Use web_search to research the fashion aesthetic and personal style of ${h} (Instagram: @${h}). Search for "${h} instagram outfits" and "${h} fashion style". Write a short style profile in EXACTLY this format - use these exact label names followed by a colon:

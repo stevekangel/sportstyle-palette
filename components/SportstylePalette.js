@@ -252,10 +252,17 @@ export default function SportstylePalette() {
 
         {/*  AESTHETIC PROFILE  */}
         {aestheticDesc && (() => {
-        const normalized = aestheticDesc.replace(/\\n/g, "\n").replace(/\*\*/g, "");
-        const lines = normalized.split(/[\n]+/).map(l => l.trim()).filter(Boolean);
-        const headline = lines[0] || "";
-        const categories = lines.slice(1);
+        // Parse profile by splitting on known category labels
+        const raw = aestheticDesc.replace(/\*\*/g, "").replace(/\\n/g, " ");
+        const LABELS = ["Favorite Fit", "Creative Colors", "Sportstyle Options"];
+        const labelPattern = new RegExp("(" + LABELS.join("|") + "):\\s*", "g");
+        const parts = raw.split(labelPattern).map(s => s.trim()).filter(Boolean);
+        // parts[0] = headline, then alternating label/body
+        const headline = parts[0] || "";
+        const categories = [];
+        for (let i = 1; i < parts.length; i += 2) {
+          if (LABELS.includes(parts[i])) categories.push({ label: parts[i], body: parts[i+1] || "" });
+        }
         const labelColors = { "Favorite Fit": B.yellow, "Creative Colors": "#4A90D9", "Sportstyle Options": "#50C878" };
         return (
           <div style={{ marginBottom: 44, borderLeft: `3px solid ${B.yellow}`, paddingLeft: 20 }}>
@@ -264,19 +271,12 @@ export default function SportstylePalette() {
             </div>
             <div style={{ fontSize: 17, fontWeight: 900, letterSpacing: "-0.3px", color: B.black, marginBottom: 18, lineHeight: 1.3 }}>{headline}</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-              {categories.map((line, i) => {
-                const colon = line.indexOf(":");
-                if (colon === -1) return <div key={i} style={{ fontSize: 13, color: B.black, lineHeight: 1.6 }}>{line}</div>;
-                const label = line.slice(0, colon).trim();
-                const body = line.slice(colon + 1).trim();
-                const labelColor = labelColors[label] || B.yellow;
-                return (
-                  <div key={i} style={{ display: "flex", flexDirection: "column", gap: 3 }}>
-                    <div style={{ fontSize: 9, fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase", color: labelColor }}>{label}</div>
-                    <div style={{ fontSize: 13, color: B.black, lineHeight: 1.6 }}>{body}</div>
-                  </div>
-                );
-              })}
+              {categories.map((cat, i) => (
+                <div key={i} style={{ display: "flex", flexDirection: "column", gap: 3 }}>
+                  <div style={{ fontSize: 9, fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase", color: labelColors[cat.label] || B.yellow }}>{cat.label}</div>
+                  <div style={{ fontSize: 13, color: B.black, lineHeight: 1.6 }}>{cat.body}</div>
+                </div>
+              ))}
             </div>
           </div>
         );

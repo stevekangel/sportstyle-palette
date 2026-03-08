@@ -243,7 +243,7 @@ Four elements only. No caveats, no hedging, no extra sentences.`
             </div>
 
             {/* HEADLINE */}
-            <div style={{ fontSize: 18, fontWeight: 900, letterSpacing: "-0.3px", color: B.black, marginBottom: 20, lineHeight: 1.3 }}>
+            <div style={{ fontSize: 22, fontWeight: 900, letterSpacing: "-0.3px", color: B.black, marginBottom: 20, lineHeight: 1.3 }}>
               {profile.headline}
             </div>
 
@@ -251,10 +251,10 @@ Four elements only. No caveats, no hedging, no extra sentences.`
             <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
               {profile.categories.map((cat, i) => (
                 <div key={i} style={{ borderTop: `1px solid ${B.lineGrey}`, paddingTop: 12 }}>
-                  <div style={{ fontSize: 9, fontWeight: 800, letterSpacing: "0.22em", textTransform: "uppercase", color: LABEL_COLORS[cat.label] || B.yellow, marginBottom: 5 }}>
+                  <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: "0.18em", textTransform: "uppercase", color: LABEL_COLORS[cat.label] || B.yellow, marginBottom: 5 }}>
                     {cat.label}
                   </div>
-                  <div style={{ fontSize: 13, color: B.black, lineHeight: 1.65 }}>
+                  <div style={{ fontSize: 15, color: B.black, lineHeight: 1.65 }}>
                     {cat.body}
                   </div>
                 </div>

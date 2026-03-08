@@ -251,14 +251,35 @@ export default function SportstylePalette() {
         )}
 
         {/*  AESTHETIC PROFILE  */}
-        {aestheticDesc && (
+        {aestheticDesc && (() => {
+        const lines = aestheticDesc.split(/\n+/).map(l => l.trim()).filter(Boolean);
+        const headline = lines[0] || "";
+        const categories = lines.slice(1);
+        const labelColors = { "Favorite Fit": B.yellow, "Creative Colors": "#4A90D9", "Sportstyle Options": "#50C878" };
+        return (
           <div style={{ marginBottom: 44, borderLeft: `3px solid ${B.yellow}`, paddingLeft: 20 }}>
-            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: B.midGrey, marginBottom: 8 }}>
-              Aesthetic Profile  @{handle.replace(/^@/, "")}
+            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: B.midGrey, marginBottom: 12 }}>
+              Aesthetic Profile @{handle.replace(/^@/, "")}
             </div>
-            <div style={{ fontSize: 14, lineHeight: 1.7, color: B.black }}>{aestheticDesc}</div>
+            <div style={{ fontSize: 17, fontWeight: 900, letterSpacing: "-0.3px", color: B.black, marginBottom: 18, lineHeight: 1.3 }}>{headline}</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+              {categories.map((line, i) => {
+                const colon = line.indexOf(":");
+                if (colon === -1) return <div key={i} style={{ fontSize: 13, color: B.black, lineHeight: 1.6 }}>{line}</div>;
+                const label = line.slice(0, colon).trim();
+                const body = line.slice(colon + 1).trim();
+                const labelColor = labelColors[label] || B.yellow;
+                return (
+                  <div key={i} style={{ display: "flex", flexDirection: "column", gap: 3 }}>
+                    <div style={{ fontSize: 9, fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase", color: labelColor }}>{label}</div>
+                    <div style={{ fontSize: 13, color: B.black, lineHeight: 1.6 }}>{body}</div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        )}
+        );
+      })()}}
 
         {/*  COLOR PALETTE  */}
         {palette.length > 0 && (

@@ -217,7 +217,7 @@ Four elements only. No caveats, no hedging, no extra sentences.`
           </div>
         </div>
         <div style={{ fontSize: 11, color: B.midGrey, letterSpacing: "0.04em", marginBottom: 44 }}>
-          Enter any public Instagram handle to extract their color palette and match to a GEL-Cumulus 16 colorway
+          Discover your signature sneaker match. Enter any Instagram handle below and we'll analyze their style, extract a personal color palette, and find the perfect ASICS GEL-Cumulus 16 colorway for them.
         </div>
 
         {/* ERROR */}

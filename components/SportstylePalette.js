@@ -252,7 +252,8 @@ export default function SportstylePalette() {
 
         {/*  AESTHETIC PROFILE  */}
         {aestheticDesc && (() => {
-        const lines = aestheticDesc.split(/\n+/).map(l => l.trim()).filter(Boolean);
+        const normalized = aestheticDesc.replace(/\\n/g, "\n").replace(/\*\*/g, "");
+        const lines = normalized.split(/[\n]+/).map(l => l.trim()).filter(Boolean);
         const headline = lines[0] || "";
         const categories = lines.slice(1);
         const labelColors = { "Favorite Fit": B.yellow, "Creative Colors": "#4A90D9", "Sportstyle Options": "#50C878" };
